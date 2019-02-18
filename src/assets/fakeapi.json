@@ -1,0 +1,41 @@
+{
+  "nome": "Daniele",
+  "cognome": "Morosinotto",
+  "residenza": {
+    "via": "Via Dante",
+    "cap": "35010",
+    "citta": "S.Giustina in Colle",
+    "prov": "PD"
+  },
+  "spedizione": {
+    "uguaglio": false,
+    "recapito": {
+      "via": "Via Roma",
+      "cap": "36100",
+      "citta": "Milano",
+      "prov": "MI"
+    }
+  },
+  "contatti": [
+    {
+      "tipo": "cell",
+      "numero": "3286723097"
+    },
+    {
+      "tipo": "tel",
+      "numero": "049xxxxx"
+    }
+  ],
+  "coniuge": {
+    "sposato": true,
+    "nome": "Paolo",
+    "cognome": "Galfione"
+  },
+  "referente": {
+    "name": "Paolo",
+    "surname": "Galfione"
+  },
+  "XXX": {
+    "amici": [{ "name": "Alice", "surname": "Capponi" }, { "name": "Ivano", "surname": "Modenin" }]
+  }
+}

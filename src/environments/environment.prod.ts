@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  baseapi: "https://somewhere.it/api"
 };
