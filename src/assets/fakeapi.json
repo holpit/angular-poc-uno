@@ -4,8 +4,8 @@
   "residenza": {
     "via": "Via Dante",
     "cap": "35010",
-    "citta": "S.Giustina in Colle",
-    "prov": "PD"
+    "citta": "Mestre",
+    "prov": "VE"
   },
   "spedizione": {
     "uguaglio": false,
@@ -19,7 +19,7 @@
   "contatti": [
     {
       "tipo": "cell",
-      "numero": "3286723097"
+      "numero": "328yyyyy"
     },
     {
       "tipo": "tel",
@@ -28,14 +28,14 @@
   ],
   "coniuge": {
     "sposato": true,
-    "nome": "Paolo",
-    "cognome": "Galfione"
+    "nome": "Miss",
+    "cognome": "Y"
   },
   "referente": {
-    "name": "Paolo",
-    "surname": "Galfione"
+    "name": "Mr",
+    "surname": "X"
   },
   "XXX": {
-    "amici": [{ "name": "Alice", "surname": "Capponi" }, { "name": "Ivano", "surname": "Modenin" }]
+    "amici": [{ "name": "Pinco", "surname": "Pallino" }, { "name": "Pippo", "surname": "Pluto" }]
   }
 }
