@@ -2,23 +2,29 @@
   <!--<app-nominativo-fld></app-nominativo-fld>-->
   <app-address-frm formControlName="residenza"></app-address-frm>
   <div formGroupName="spedizione">
-    <input type="checkbox" formControlName="uguaglio" />
+    <label class="checkbox-label"><input type="checkbox" formControlName="uguaglio" /> Scrivi anche l'indirizzo di spedizione</label>
     <app-address-frm formControlName="recapito"></app-address-frm>
   </div>
   <app-name-frm formControlName="referente"></app-name-frm>
   <app-amici-arr formControlName="XXX"></app-amici-arr>
 </div>
-<button (click)="Load()">LOAD</button>
-<button (click)="Save()">SAVE</button>
-<hr />
-<h3>FormGroup</h3>
-<pre>
-FRM={{ frm.value | json }}
---------------------------------------
- 
-ERR = {{ frm.errors | json }}
-</pre>
-<h3>Dto</h3>
-<pre>
-DTO={{ dto | json }}
-</pre>
+<div class="button-sticky right">
+  <button class="orange" (click)="Load()">LOAD Happiness</button>
+  <button class="green" (click)="Save()">Send pods to the moon</button>
+</div>
+
+<div class="button-sticky left">
+  <div class="dash">
+    <h5>FormGroup</h5>
+    <pre>
+      FRM={{ frm.value | json }}
+      ERR = {{ frm.errors | json }}
+      </pre
+    >
+    <h5>Dto</h5>
+    <pre>
+      DTO={{ dto | json }}
+      </pre
+    >
+  </div>
+</div>
