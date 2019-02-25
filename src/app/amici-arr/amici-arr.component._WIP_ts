@@ -1,4 +1,4 @@
-import { Component, OnInit, Self, Injector } from "@angular/core";
+import { Component, OnInit, Self, Injector, forwardRef } from "@angular/core";
 import {
   FormArray,
   FormControl,
@@ -8,7 +8,8 @@ import {
   Validator,
   Validators,
   FormGroup,
-  ControlContainer
+  ControlContainer,
+  NG_VALUE_ACCESSOR
 } from "@angular/forms";
 import { AddressFrmComponent } from "../address-frm/address-frm.component";
 import { NameFrmComponent } from "../name-frm/name-frm.component";
@@ -16,12 +17,14 @@ import { NameFrmComponent } from "../name-frm/name-frm.component";
 @Component({
   selector: "app-amici-arr",
   template: `
-    <fieldset [formGroup]="frm">
+    CIAO AMICICI
+  ` /*`
+    <fieldset>
       <h4>Fieldset array</h4>
       <div class="button-right">
         <button (click)="add()" class="green">Add</button>
       </div>
-      <div formArrayName="amici">
+      <div>
         <article *ngFor="let ctrl of arr.controls; index as i">
           <div class="button-right">
             <button (click)="rem(i)" class="brown">Remove</button>
@@ -30,33 +33,36 @@ import { NameFrmComponent } from "../name-frm/name-frm.component";
         </article>
       </div>
     </fieldset>
-  `,
-  styles: []
+  `*/
+  //providers: [{ provide: NgControl, useExisting: forwardRef(() => AmiciArrComponent) }]
 })
 export class AmiciArrComponent implements ControlValueAccessor, Validator, OnInit {
   onTouch = () => {};
 
-  frm = new FormGroup({
-    amici: new FormArray([])
-  });
   arr: FormArray;
-  constructor(@Self() public controlDir: NgControl /*, private injector: Injector*/) {
-    this.arr = this.frm.get("amici") as FormArray;
-    controlDir.valueAccessor = this;
+  constructor(public parent: ControlContainer, @Self() public controlDir: NgControl /*, private injector: Injector*/) {
+    console.warn("INSIDE ARR-AMICI", parent);
+    //QUI E' TROPPO PRESTO DEVO ASPETARE onInit()
+    //console.info("ARR??", this.controlDir.control);
+    //this.arr = this.controlDir.control as FormArray;
+    this.controlDir.valueAccessor = this;
+    //this.arr.valueAccessor = this;
     // console.log('CTRLDIR', controlDir);
   }
-  writeValue(val: any): void {
-    // console.log('ARR val', val, ' model -> view');
-    if (val && val.amici) {
-      if (this.arr.length != val.amici.length) {
-        // console.log('ALLINEO ARRAY DATI -> ARRAY DI FRMGROUP');
-        for (let i = this.arr.length; i < val.amici.length; i++) {
-          this.arr.push(new FormControl(null));
-        }
-      }
-      this.frm.patchValue(val, { emitEvent: false });
-      this.frm.updateValueAndValidity({ onlySelf: true });
-    }
+
+  writeValue(val: any[]): void {
+    console.error("IO SONO UN VA - DOPO ONINIT?", val);
+    // console.log("ARR val", val, " model -> view");
+    // if (val) {
+    //   if (this.arr.length != val.length) {
+    //     // console.log('ALLINEO ARRAY DATI -> ARRAY DI FRMGROUP');
+    //     for (let i = this.arr.length; i < val.length; i++) {
+    //       this.arr.push(new FormControl(null));
+    //     }
+    //   }
+    //   this.arr.patchValue(val, { emitEvent: false });
+    //   this.arr.updateValueAndValidity({ onlySelf: true });
+    // }
   }
 
   /* TODO: DYNAMIC ITEM CHILD COMPONENT
@@ -73,11 +79,11 @@ export class AmiciArrComponent implements ControlValueAccessor, Validator, OnIni
   */
 
   registerOnChange(fnChange: (val: IAddress) => void): void {
-    // console.log('ADESSO ARR FMCHANGE', fnChange);
-    this.frm.valueChanges.subscribe(fromView => {
-      // console.log('ARR valFromView', fromView, ' call fnChange view -> model');
-      fnChange(fromView);
-    });
+    // // console.log('ADESSO ARR FMCHANGE', fnChange);
+    // this.arr.valueChanges.subscribe(fromView => {
+    //   // console.log('ARR valFromView', fromView, ' call fnChange view -> model');
+    //   fnChange(fromView);
+    // });
   }
 
   //onTouch: Function;
@@ -86,9 +92,9 @@ export class AmiciArrComponent implements ControlValueAccessor, Validator, OnIni
     this.onTouch = fn;
   }
   setDisabledState?(isDisabled: boolean): void {
-    // console.log('set Disable -> ', isDisabled);
-    if (isDisabled) this.arr.disable();
-    else this.arr.enable();
+    // // console.log('set Disable -> ', isDisabled);
+    // if (isDisabled) this.arr.disable();
+    // else this.arr.enable();
   }
 
   add() {
@@ -104,7 +110,9 @@ export class AmiciArrComponent implements ControlValueAccessor, Validator, OnIni
   }
 
   ngOnInit() {
-    const control = this.controlDir.control;
+    const control = this.parent.control;
+    console.log("CE L'HO QUI?", this.parent.control);
+    this.arr = this.parent.control as FormArray;
     //let validators = control.validator ? [control.validator, Validators.required] : Validators.required;
     //control.setValidators(validators);
     //control.updateValueAndValidity();

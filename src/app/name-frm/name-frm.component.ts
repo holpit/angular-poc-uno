@@ -31,17 +31,17 @@ export class NameFrmComponent implements ControlValueAccessor, Validator, OnInit
   });
   constructor(@Self() public controlDir: NgControl) {
     controlDir.valueAccessor = this;
-    console.log("CTRLDIR", controlDir);
+    // console.log("CTRLDIR", controlDir);
   }
   writeValue(val: IAddress): void {
-    console.log("val", val, " model -> view");
+    // console.log("val", val, " model -> view");
     val && this.frm.patchValue(val, { emitEvent: false });
   }
 
   registerOnChange(fnChange: (val: IAddress) => void): void {
-    console.log("ADESSO", fnChange);
+    // console.log("ADESSO", fnChange);
     this.frm.valueChanges.subscribe(fromView => {
-      console.log("valFromView", fromView, " call fnChange view -> model");
+      // console.log("valFromView", fromView, " call fnChange view -> model");
       fnChange(fromView);
     });
   }

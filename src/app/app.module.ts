@@ -10,6 +10,8 @@ import { NominativoFldComponent } from "./nominativo-fld/nominativo-fld.componen
 import { AddressFrmComponent } from "./address-frm/address-frm.component";
 import { NameFrmComponent } from "./name-frm/name-frm.component";
 import { AmiciArrComponent } from "./amici-arr/amici-arr.component";
+import { FormAttachNameDirective } from './form-attach-name.directive';
+import { UiTextboxComponent } from './ui-textbox/ui-textbox.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +19,9 @@ import { AmiciArrComponent } from "./amici-arr/amici-arr.component";
     NominativoFldComponent,
     AddressFrmComponent,
     NameFrmComponent,
-    AmiciArrComponent
+    AmiciArrComponent,
+    FormAttachNameDirective,
+    UiTextboxComponent
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule],
   providers: [],

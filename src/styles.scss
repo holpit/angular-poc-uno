@@ -1,11 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 html,
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 16px;
 }
 body {
-  max-width: 600px;
+  max-width: 520px;
   margin: 0 auto;
 }
 
@@ -16,8 +16,8 @@ h4 {
 pre {
   max-height: 400px;
   font-family: monospace;
-  background: black;
-  color: yellow;
+  background: #555;
+  color: greenyellow;
   overflow: auto;
   padding: 4px;
 }
@@ -65,7 +65,7 @@ input {
   color: #767676;
   font-style: italic;
   font-size: 1.1rem;
-  &[type='checkbox'] {
+  &[type="checkbox"] {
     min-height: auto;
     width: auto;
   }
@@ -87,7 +87,6 @@ label {
 .button-sticky {
   position: fixed;
   top: 0;
-  width: 20%;
   display: flex;
   justify-content: center;
   padding-top: 16px;
@@ -95,10 +94,16 @@ label {
   align-items: flex-start;
   &.right {
     right: 0;
+    align-items: center;
+    justify-content: flex-start;
+    bottom: auto;
+    width: auto;
+    padding-top: 2px;
   }
   &.left {
     left: 0;
     padding-top: 0;
+    width: 25%;
   }
   .dash {
     width: 100%;
