@@ -10,6 +10,10 @@
   <app-name-frm formControlName="referente"></app-name-frm>
   <!--<app-amici-arr fo rmArrayName="amici"></app-amici-arr>-->
   <app-amici-arr formControlName="XXX"></app-amici-arr>
+  <div [formGroup]="frm.get('coniuge')">
+    <label class="checkbox-label"><input type="checkbox" formControlName="sposato" /> poverino...</label>
+    <app-nominativo-fld></app-nominativo-fld>
+  </div>
 </div>
 <div class="button-sticky right">
   <button class="orange" (click)="Load()">LOAD Happiness</button>

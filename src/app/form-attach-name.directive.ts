@@ -54,6 +54,7 @@ export class FormAttachNameDirective extends FormControlName implements OnChange
     if (changes.name && changes.name.isFirstChange()) {
       let fgParent = ((this.__parent.formDirective as IKNOWINTERNAL) as { control: FormGroup }).control;
       console.info("fgParent", fgParent);
+      console.error("NON E' UN ERRORE", fgParent, "__PARENT", this.__parent);
       console.log("HO NAME E MI APPICCICO", changes.name.currentValue);
       fgParent.addControl(changes.name.currentValue, new FormControl());
     } else {
