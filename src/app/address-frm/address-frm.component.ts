@@ -23,7 +23,7 @@ import { BaseFrmComponent } from "../base-form/base-form.component";
   `,
   styles: []
 })
-export class AddressFrmComponent extends BaseFrmComponent {
+export class AddressFrmComponent extends BaseFrmComponent<IAddress> {
   onTouch = () => {};
   //onTouch: () => {};
   // onChange: (_: any) => {};
