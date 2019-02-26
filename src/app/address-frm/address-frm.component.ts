@@ -15,8 +15,9 @@ import {
     <fieldset [formGroup]="frm">
       <h4>Fieldset indirizzo</h4>
       <label>Via</label><input formControlName="via" (blur)="onTouch()" /> <label>CAP</label
-      ><input type="number" formControlName="cap" /> <label>Città</label
-      ><input formControlName="citta" (blur)="onTouch()" /> <label>Prov</label><input formControlName="prov" />
+      ><input type="number" formControlName="cap" (blur)="onTouch()" /> <label>Città</label
+      ><input formControlName="citta" (blur)="onTouch()" /> <label>Prov</label
+      ><input formControlName="prov" (blur)="onTouch()" />
     </fieldset>
   `,
   styles: []

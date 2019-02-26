@@ -14,9 +14,8 @@ import {
   template: `
     <fieldset [formGroup]="frm">
       <h4>Fieldset name</h4>
-      <label>Name</label><input formControlName="name" (blur)="onTouch()" />
-
-      <label>Surname</label><input type="text" formControlName="surname" (blur)="onTouch()" />
+      <ui-textbox label="Name" formControlName="name"></ui-textbox>
+      <ui-textbox label="Surname" formControlName="surname"></ui-textbox>
     </fieldset>
   `,
   styles: []

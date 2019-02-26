@@ -72,7 +72,7 @@ export class AmiciArrComponent implements ControlValueAccessor, Validator, OnIni
   }
   */
 
-  registerOnChange(fnChange: (val: IAddress) => void): void {
+  registerOnChange(fnChange: (val: any) => void): void {
     // console.log('ADESSO ARR FMCHANGE', fnChange);
     this.frm.valueChanges.subscribe(fromView => {
       // console.log('ARR valFromView', fromView, ' call fnChange view -> model');

@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { APIDataService } from "../apidata.service";
+import { APIDataService } from "../_DAL/apidata.service";
 import { takeUntil, distinctUntilChanged } from "rxjs/operators";
 import { FormGroup, FormControl, FormArray } from "@angular/forms";
 import { BaseComponent } from "../base-destroy-cmp/base.component";
@@ -33,7 +33,7 @@ export class AnagraficaContainerComponent extends BaseComponent implements OnIni
   Load() {
     this.svc
       .getAnagrafica()
-      .pipe(takeUntil(this.destroy$))
+      //.pipe(takeUntil(this.destroy$))
       .subscribe(data => {
         this.dto = data;
         this.frm.patchValue(data);
