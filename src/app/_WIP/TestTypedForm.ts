@@ -1,5 +1,44 @@
 import { FormGroup, FormControl, FormArray, AbstractControl } from "@angular/forms";
+import { Observable } from "rxjs";
+import { FormGroupTyped, FormArrayTyped, FormControlTyped, AbstractControlTyped } from "./TypedForm";
+/*
+export interface AbstractControlTyped<T> extends AbstractControl {
+  readonly value: T;
+  valueChanges: Observable<T>;
+  readonly status: "VALID" | "INVALID" | "PENDING" | "DISABLED" | string;
+  statusChanges: Observable<"VALID" | "INVALID" | "PENDING" | "DISABLED">;
+  get(path: (string | number)[]): AbstractControlTyped<any> | null; //unknow is BETTER?!
+  setValue<V>(value: V extends T ? V : never, options?: { onlySelf?: boolean; emitEvent?: boolean }): void;
+  patchValue<V>(value: V extends Partial<T> ? V : never, options?: { onlySelf?: boolean; emitEvent?: boolean }): void;
+  reset<V>(value?: V extends Partial<T> ? V : never, options?: { onlySelf?: boolean; emitEvent?: boolean }): void;
+}
 
+export type FormControlTyped<T> = AbstractControlTyped<T> & FormControl;
+
+export type FormGroupTyped<T> = {
+  controls: { [P in string]: AbstractControlTyped<P extends keyof T ? T[P] : any> };
+  registerControl<D = any>(name: string, control: AbstractControlTyped<D>): AbstractControlTyped<D>;
+  addControl<D = any>(name: string, control: AbstractControlTyped<D>): void;
+  removeControl(name: keyof T): void;
+  setControl<P extends keyof T>(name: P, control: AbstractControlTyped<T[P]>): void;
+  contains(name: string): boolean;
+  get<P extends keyof T>(path: P): AbstractControlTyped<T[P]>;
+  getRawValue(): T & { [disabledProp in string | number]: any };
+} & AbstractControlTyped<T> &
+  FormGroup;
+
+//type FormArrayTyped<A extends any[]> = A extends (infer T)[] ? (...T...) : never;
+export type FormArrayTyped<T> = {
+  controls: AbstractControlTyped<T>[];
+  at(index: number): AbstractControlTyped<T>;
+  push(ctrl: AbstractControlTyped<T>): void;
+  insert(index: number, control: AbstractControlTyped<T>): void;
+  setControl(index: number, control: AbstractControlTyped<T>): void;
+  //setValue(value: T[], options?: { onlySelf?: boolean; emitEvent?: boolean }): void;
+  //patchValue(value: Partial<T>[], options?: { onlySelf?: boolean; emitEvent?: boolean }): void;
+} & AbstractControlTyped<T[]> &
+  FormArray;
+*/
 function testFormGroupTyped() {
   var frm = new FormGroup({
     a: new FormArray([new FormControl(0)]),
@@ -21,8 +60,8 @@ function testFormGroupTyped() {
   var d = r.d; //OK infer any
   var ok = frm.contains("a"); //OK infer true maybe TOO MUCH!?
   var ko = frm.contains("d"); //OK infer boolean -> true=enabled, false=disabled
-  frm.setValue({ b: false }, { onlySelf: true, emitEvent: false }); //I would ERROR but strict check doesn't work... :-(
-  frm.patchValue({ b: true }, { onlySelf: true, emitEvent: false }); //I would OK but strict check doesn't work... :-(
+  frm.setValue({ a: [1, 23], bb: true, c: { s: "s", n: 1 } }); // { b: false }, { onlySelf: true, emitEvent: false }); //I would ERROR but strict check doesn't work... :-(
+  frm.patchValue({ bb: true }, { onlySelf: true, emitEvent: false }); //I would OK but strict check doesn't work... :-(
   frm.removeControl("d"); //OK method with correct signature :-)
   frm.registerControl("d", new FormControl(null)); //OK method with correct signature :-)
   frm.get("d").disable(); //OK method with correct signature :-)
