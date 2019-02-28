@@ -36,5 +36,5 @@ class C extends B {
 }
 
 var x = new C() as IC<{ a: number; b: boolean }>;
-x.setValue({ a: 123, bb: true });
-x.patchValue({ bb: false });
+x.setValue({ a: 123, b: true }); //se metto bb ERROR
+x.patchValue({ b: false }); //se metto bb ERROR
